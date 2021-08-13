@@ -1,0 +1,80 @@
+#Uc1
+create database Address_Book_Service;
+show databases;
+use AddressBook_Service;
+
+#Uc2
+create table Address_Book(
+	id int unsigned not null auto_increment,
+	first_name varchar (15) not null,
+    last_name varchar (15) not null,
+    address varchar (150) not null,
+	city varchar (150) not null,
+	state varchar (150) not null,
+	zip int not null,
+    phone_number long not null,
+    email varchar (100) not null,
+    primary key (id)
+
+);
+
+select * from  Address_Book;
+
+
+
+#UC3
+
+insert into Address_Book (first_name,last_name,address,city,state,zip,phone_number,email) values
+('VICKY','MALLICK','Civil Township','Rourkela','Odisha',402108,5864764867,'vicky@gmail.com'),
+('LUCKY','MALLICK','Basanti Colony ','Rourkela','Odisha',405643,5364764557,'lucky@gmail.com'),
+('ABHIJEET','SAHOO','Chhend Colony ','Rourkela ','Odisha',754643,5364764232,'abhijeet@gmail.com');
+
+
+#UC4
+
+select city from AddressBook where first_name = 'VICKY';
+update Address_Book set city = 'BANGALORE' where first_name = 'VICKY'; 
+update Address_Book set state = 'KARNATAKA' where first_name = 'VICKY'; 
+update Address_Book set Address = 'HSR LAYOUT' where first_name = 'VICKY';
+update Address_Book set zip = 288879 where first_name = 'VICKY';  
+update Address_Book set phone_number = 9110842948 where first_name = 'VICKY';  
+update Address_Book set email = 'vicky@outlook.com.com' where first_name = 'VICKY';  
+update Address_Book set email = 'abhijeet@yahoo.com',
+
+
+#UC5
+delete from Address_Book
+WHERE first_name = 'VICKY';
+
+#UC6
+select * from Address_Book
+where city = 'Rourkela' or state = 'Odisha';
+
+#UC7
+SELECT COUNT(city or state)
+FROM Address_Book;
+
+#UC8
+select first_name,
+    city
+  from Address_Book
+  order by city asc;
+  
+  #UC9
+Alter table Address_Book add type varchar(15) after last_name;
+update  Address_Book set type='Family' where first_name ='VICKY';
+update  Address_Book set type='Profession' where first_name ='LUCKY';
+update  Address_Book set type='Friends' where first_name ='ABHIJEET';
+
+#UC10
+SELECT COUNT(type) AS Number_Of_Contact_Person 
+FROM Address_Book;
+
+drop table Address_Book;
+
+#UC11
+insert into Address_Book (first_name,last_name,address,city,state,zip,phone_number,email) values
+('VICKY','MALLICK','Civil Township','Rourkela','Odisha',1232184,9110842948,'mallick@gmail.com');
+update  Address_Book set type='Friend' where id = 4;
+
+
